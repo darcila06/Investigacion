@@ -5,113 +5,303 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+  static const String _title = 'Juegos de suma cero';
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: _title,
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
-        // This makes the visual density adapt to the platform that you run
-        // the app on. For desktop platforms, the controls will be smaller and
-        // closer together (more dense) than on mobile platforms.
+        primarySwatch: Colors.red,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyStatelessWidget(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
+class MyStatelessWidget extends StatelessWidget {
+  MyStatelessWidget({Key key}) : super(key: key);
+  int _selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
       appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+        title: const Text('Juegos de suma cero'),
+        actions: <Widget>[],
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
+      body: Dosxdos(),
+      drawer: Drawer(
+          child: ListView(padding: EdgeInsets.zero, children: <Widget>[
+        DrawerHeader(
+          child: Text(""),
+          decoration: BoxDecoration(
+              color: Colors.red,
+              image: DecorationImage(
+                image: AssetImage("assets/images/konrad.png"),
+              )),
         ),
+        ListTile(
+          title: Text('Juegos 2x2'),
+          onTap: () {
+            Navigator.of(context).pop();
+          },
+          leading: GestureDetector(
+            child: Container(
+              width: 48,
+              height: 48,
+              padding: EdgeInsets.symmetric(vertical: 4.0),
+              alignment: Alignment.center,
+              child: CircleAvatar(child: Icon(Icons.table_chart_outlined)),
+            ),
+          ),
+        ),
+        ListTile(
+          title: Text('Juegos 3x3'),
+          onTap: () {
+            // Update the state of the app.
+            // ...
+          },
+          leading: GestureDetector(
+            child: Container(
+              width: 48,
+              height: 48,
+              padding: EdgeInsets.symmetric(vertical: 4.0),
+              alignment: Alignment.center,
+              child: CircleAvatar(
+                child: Icon(Icons.table_chart_outlined),
+              ),
+            ),
+          ),
+        ),
+      ])),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.table_chart_outlined),
+            label: 'Juegos 2x2',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.table_chart_outlined),
+            label: 'Juegos 3x3',
+          ),
+        ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
+
+class Dosxdos extends StatefulWidget {
+  @override
+  _DosxdosState createState() => _DosxdosState();
+}
+
+class _DosxdosState extends State<Dosxdos> {
+  final c1f1 = TextEditingController();
+  final c2f1 = TextEditingController();
+  final c1f2 = TextEditingController();
+  final c2f2 = TextEditingController();
+  final maximin1 = TextEditingController();
+  final maximin2 = TextEditingController();
+  final minimax1 = TextEditingController();
+  final minimax2 = TextEditingController();
+  final silla = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.all(15),
+      child: Column(
+        children: <Widget>[
+          Table(
+            defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+            columnWidths: {0: FractionColumnWidth(0.3)},
+            border: TableBorder.all(),
+            children: [
+              TableRow(children: [
+                Text(''),
+                Text('Estrategia 1'),
+                Text('Estrategia 2'),
+                Text('MaxiMin')
+              ]),
+              TableRow(children: [
+                Text('Estrategia 1'),
+                TextField(
+                  controller: c1f1,
+                  keyboardType: TextInputType.number,
+                ),
+                TextField(
+                  controller: c2f1,
+                  keyboardType: TextInputType.number,
+                ),
+                TextField(
+                  controller: maximin1,
+                  enableInteractiveSelection: false,
+                  enabled: false,
+                )
+              ]),
+              TableRow(children: [
+                Text('Estrategia 2'),
+                TextField(
+                  controller: c1f2,
+                  keyboardType: TextInputType.number,
+                ),
+                TextField(
+                  controller: c2f2,
+                  keyboardType: TextInputType.number,
+                ),
+                TextField(
+                  controller: maximin2,
+                  enableInteractiveSelection: false,
+                  enabled: false,
+                )
+              ]),
+              TableRow(children: [
+                Text('MiniMax'),
+                TextField(
+                  controller: minimax1,
+                  enableInteractiveSelection: false,
+                  enabled: false,
+                ),
+                TextField(
+                  controller: minimax2,
+                  enableInteractiveSelection: false,
+                  enabled: false,
+                ),
+                TextField(
+                  enableInteractiveSelection: false,
+                  enabled: false,
+                )
+              ])
+            ],
+          ),
+          TextField(
+            controller: silla,
+            enableInteractiveSelection: false,
+            enabled: false,
+          ),
+          RaisedButton(
+            onPressed: () {
+              ResolverJuego();
+            },
+            textColor: Colors.white,
+            padding: const EdgeInsets.all(0.0),
+            child: Container(
+              decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                  colors: <Color>[
+                    Color(0xFF0D47A1),
+                    Color(0xFF1976D2),
+                    Color(0xFF42A5F5),
+                  ],
+                ),
+              ),
+              padding: const EdgeInsets.all(10.0),
+              child: const Text('Enviar Juego', style: TextStyle(fontSize: 20)),
+            ),
+          ),
+          RaisedButton(
+            onPressed: () {
+              ReiniciarJuego();
+            },
+            textColor: Colors.white,
+            padding: const EdgeInsets.all(0.0),
+            child: Container(
+              decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                  colors: <Color>[
+                    Color(0xFF0D47A1),
+                    Color(0xFF1976D2),
+                    Color(0xFF42A5F5),
+                  ],
+                ),
+              ),
+              padding: const EdgeInsets.all(10.0),
+              child:
+                  const Text('Reiniciar Juego', style: TextStyle(fontSize: 20)),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  ResolverJuego() async {
+    int v1f1 = int.parse(c1f1.text);
+    int v2f1 = int.parse(c2f1.text);
+    int v1f2 = int.parse(c1f2.text);
+    int v2f2 = int.parse(c2f2.text);
+    int maximinuno = 0;
+    int maximindos = 0;
+    int minimaxuno = 0;
+    int minimaxdos = 0;
+    int minimax = 0;
+    int maximin = 0;
+
+    if (v1f1 < v2f1) {
+      maximin1.text = c1f1.text;
+      maximinuno = v1f1;
+    } else {
+      maximin1.text = c2f1.text;
+      maximinuno = v2f1;
+    }
+
+    if (v1f2 < v2f2) {
+      maximin2.text = c1f2.text;
+      maximindos = v1f2;
+    } else {
+      maximin2.text = c2f2.text;
+      maximindos = v2f2;
+    }
+
+    if (v1f1 > v1f2) {
+      minimax1.text = c1f1.text;
+      minimaxuno = v1f1;
+    } else {
+      minimax1.text = c1f2.text;
+      minimaxuno = v1f2;
+    }
+
+    if (v2f1 > v2f2) {
+      minimax2.text = c2f1.text;
+      minimaxdos = v2f1;
+    } else {
+      minimax2.text = c2f2.text;
+      minimaxdos = v2f2;
+    }
+
+    if (minimaxuno < minimaxdos) {
+      minimax = minimaxuno;
+    } else {
+      minimax = minimaxdos;
+    }
+    if (maximinuno > maximindos) {
+      maximin = maximinuno;
+    } else {
+      maximin = maximindos;
+    }
+
+    if (minimax == maximin) {
+      silla.text = "Hay punto de silla en " +
+          minimax.toString() +
+          " y en " +
+          maximin.toString();
+    } else {
+      silla.text = "No hay punto de silla";
+    }
+    print(silla.text);
+  }
+
+  void ReiniciarJuego() {
+    c1f1.text = "";
+    c2f1.text = "";
+    c1f2.text = "";
+    c2f2.text = "";
+    maximin1.text = "";
+    maximin2.text = "";
+    minimax1.text = "";
+    minimax2.text = "";
+    silla.text = "";
+  }
+}
+
